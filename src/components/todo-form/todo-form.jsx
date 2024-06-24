@@ -2,12 +2,16 @@ import * as React from 'react';
 import { TodosContext } from '../../todo-context';
 import './todo-form.scss';
 
-export const TodoForm = () => {
+export const TodoForm = (textData) => {
   const { todos, setTodos } = React.useContext(TodosContext);
   const [task, setTask] = React.useState('');
 
   const handleAddTodo = () => {
-    // Fin an ability to add new task
+    setTodos([...todos, {
+      id: todos.length ? todos.length + 1 : 1,
+      label: task,
+      checked: false,
+    }]);
   };
 
   const handleKeyUp = (e) => {

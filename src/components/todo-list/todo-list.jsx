@@ -3,15 +3,25 @@ import { Checkbox } from '../checkbox';
 import { TodosContext } from '../../todo-context';
 import './todo-list.scss';
 
-export const TodoList = () => {
+export const TodoList = (list) => {
   const { todos, setTodos } = React.useContext(TodosContext);
 
   const handleDelete = (id) => {
     // Fix an ability to delete task
+    const deletetudo = todos.filter((e) => e.id !== id);
+    setTodos(deletetudo);
   };
 
   const toggleCheck = (id) => {
     // Fix an ability to toggle task
+    const select = todos.map((e) => {
+      if (e.id === id) {
+        e.checked = !e.checked;
+        return e;
+      }
+      return e;
+    });
+    setTodos(select);
   };
 
   const handleKeyUp = (e, id) => {
